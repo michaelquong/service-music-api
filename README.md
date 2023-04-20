@@ -132,7 +132,7 @@ Metrics that are monitored to ensure a healthy deployment.
 
 If any issues occur with 1 or more of these potential metrics, look into executing automated rollback strategies (Rolling back to previous Helm Chart revision).
 
-With EKS orchestrating our application services with RollingUpdate strategy, there should not be any maintenance window required.
+With EKS orchestrating our application services with RollingUpdate strategy, there should not be any maintenance window required. In the case where our deployment fails for any reason (automation or application errors, etc...), we would attempt to rollback to previous state to ensure that our customers are still able to use our application. During a deployment failure, we will assess the reasons for failures, address the underlying issue and schedule a deployment again. Depending on the release strategy adopted, this could be the next release window, or some other planned cadence.
 
 **Additional**  
 This deployment strategy can be rehearsed with automation to Dev, test and/or stage environments. Additional test and validations can be applied to tune metrics based on application changes. With Helm charts, we have the options of choosing to employ a gitops style of deployment with ArgoCD. Instead of pushing chart changes, ArgoCD services, will automatically pull chart changes from Repo base on code commit.
