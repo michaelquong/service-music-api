@@ -1,0 +1,16 @@
+# This file is used by pip to install required python packages
+# Usage: pip install -r requirements.txt
+
+# Flask Framework
+Flask==2.2.0
+
+# Supporting packages
+SQLAlchemy==2.0
+kafka-python==2.0.2
+
+# AWS CLI
+boto3
+
+# telemetry (compatible with Jaeger)
+opentelemetry-api
+opentelemetry-sdk
