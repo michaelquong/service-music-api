@@ -99,7 +99,7 @@ High percentage of Pod request latencies, resource utilization, error rates and 
 ## Application Deployment Lifecycle
 *Notes: With the assumption that database schema changes are already managed and dealt with ahead of time. Will only be considering application deployment lifecycle.*
 
-Since our application is packaged as Docker images, all major version changes to runtime and dependency libraries can be updated via the Dockerfile. Our CI automation pipeline will manage versioning With tags (publish new tagged images to Container Registry).
+Since our application is packaged as Docker images, all major version changes to runtime and dependency libraries can be updated via the [Dockerfile](./Dockerfile). Our CI automation pipeline will manage versioning With tags (publish new tagged images to Container Registry).
 
 **From Code to Production**  
 *Notes: With assumptions that proper source code lifecycle management standards are used. Will employ basic Github Branching model workflow*
@@ -113,8 +113,8 @@ Rolling new changes (major or minor features)
     - Additional CI pipeline stages are included like testing (integrations, performance, etc...), validations and gating requirements.
     - Tagging and publishing images and artifacts will commence after all prior stages have passed.
 
-*Notes: For continuous delivery, the next steps would involve human gating requirements to trigger the deployment stages. Otherwise, for continuous deployment, deployment stages will automatically occur. Will assume the latter. Will also assume EKS with Helm charts as deployment destination.*
-- Helm charts with latest revision tags, from above steps, will deploy our application services to EKS.
+*Notes: For continuous delivery, the next steps would involve human gating requirements to trigger the deployment stages. Otherwise, for continuous deployment, deployment stages will automatically occur. Will assume the latter. Will also assume we will be deploying with Helm Charts onto EKS.*
+- Helm charts with latest revision tags, from above steps, automation pipeline will deploy our application services to EKS.
     - Use RollingUpdate strategy to ensure that our new service pods are available/healthy before winding down previous pods.
     - Will specify a replica count for our services to be at least 3 to meet availability requirements
     - Can set minimum and maximum replica counts to support peaks and troughs in traffic demands (autoScaling).
